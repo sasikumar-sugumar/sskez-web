@@ -1,0 +1,11 @@
+version: '2'
+services:
+   sskez-nginx:
+        image: "eurosasi/sskez-web"
+        build:
+            context: .
+            dockerfile: Dockerfile.sskez.web
+        ports:
+          - "80:80"
+        environment:
+            FILELOGLEVEL: error

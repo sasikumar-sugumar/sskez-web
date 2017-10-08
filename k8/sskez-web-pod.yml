@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sskez-web
+spec:
+# this replicas value is default
+  # modify it according to your case
+  replicas: 2
+   # selector can be applied automatically
+  # from the labels in the pod template if not set,
+  # but we are specifying the selector here to
+  # demonstrate its usage
+  selector:
+    matchLabels:
+      app: sskez-web
+      env: dev
+      tier: frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sskez-web
+        env: dev
+        tier: frontend
+    spec:
+      containers:
+        - name: sskez-web
+          image: eurosasi/sskez-web
+          ports:
+            - containerPort: 80
+              protocol: TCP
